@@ -263,10 +263,321 @@ public class Block {
 
     /**
      * 图形变换
-     * TODO
      */
     void turn(){
-
+        modifyForm(1);
+        switch (type){
+            case I:
+                turnI();
+                break;
+            case J:
+                turnJ();
+                break;
+            case L:
+                turnL();
+                break;
+            case S:
+                turnS();
+                break;
+            case T:
+                turnT();
+                break;
+            case Z:
+                turnZ();
+                break;
+            default:
+                break;
+        }
+    }
+    private void turnI(){
+        if((form&1)==1){
+            if(isCanMove("c",0,-2)
+                    &&isCanMove("c",0,-1)&&isCanMove("c",0,1)){
+                a.setX(c.getX());
+                a.setY(c.getY()-size*2);
+                b.setY(c.getY()-size);
+                b.setX(c.getX());
+                d.setX(c.getX());
+                d.setY(c.getY()+size);
+            }else {
+                modifyForm(-1);
+            }
+        }else {
+            if(isCanMove("c",2,0)
+                    &&isCanMove("c",1,0)&&isCanMove("c",1,0)){
+                a.setX(c.getX()+size*2);
+                a.setY(c.getY());
+                b.setY(c.getY());
+                b.setX(c.getX()+size);
+                d.setX(c.getX()-size);
+                d.setY(c.getY());
+            }else {
+                modifyForm(-1);
+            }
+        }
+    }
+    private void turnJ(){
+        switch (form){
+            case 0:
+                if(isCanMove("b",1,0)&&isCanMove("b",0,-1)
+                &&isCanMove("b",2,-1)&&isCanMove("b",2,0)
+                &&isCanMove("b",1,-1)){
+                    b.setX(b.getX()+size);
+                    a.setX(b.getX()-size);
+                    a.setY(b.getY()-size);
+                    c.setX(b.getX()+size);
+                    c.setY(b.getY()-size);
+                    d.setX(b.getX()+size);
+                    d.setY(b.getY());
+                    b.setY(b.getY()-size);
+                }else {
+                    modifyForm(-1);
+                }
+                break;
+            case 1:
+                if(isCanMove("b",0,1)&&isCanMove("b",1,0)
+                &&isCanMove("b",1,2)&&isCanMove("b",0,2)
+                &&isCanMove("b",1,1)){
+                    b.setY(b.getY()+size);
+                    a.setX(b.getX()+size);
+                    a.setY(b.getY()-size);
+                    c.setY(b.getY()+size);
+                    c.setX(b.getX()+size);
+                    d.setY(b.getY()+size);
+                    d.setX(b.getX());
+                    b.setX(b.getX()+size);
+                }else {
+                    modifyForm(-1);
+                }
+                break;
+            case 2:
+                if(isCanMove("b",-1,0)&&isCanMove("b",0,1)
+                &&isCanMove("b",-2,1)&&isCanMove("b",-2,0)
+                &&isCanMove("b",-1,1)){
+                    b.setX(b.getX()-size);
+                    a.setX(b.getX()+size);
+                    a.setY(b.getY()+size);
+                    c.setX(b.getX()-size);
+                    c.setY(b.getY()+size);
+                    d.setX(b.getX()-size);
+                    d.setY(b.getY());
+                    b.setY(b.getY()+size);
+                }else {
+                    modifyForm(-1);
+                }
+                break;
+            case 3:
+                if(isCanMove("b",0,-1)&&isCanMove("b",-1,0)
+                &&isCanMove("b",-1,-2)&&isCanMove("b",0,-2)
+                &&isCanMove("b",-1,-1)){
+                    b.setY(b.getY()-size);
+                    a.setX(b.getX()-size);
+                    a.setY(b.getY()+size);
+                    c.setX(b.getX()-size);
+                    c.setY(b.getY()-size);
+                    d.setX(b.getX());
+                    d.setY(b.getY()-size);
+                    b.setX(b.getX()-size);
+                }else {
+                    modifyForm(-1);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    private void turnL(){
+        switch (form){
+            case 0:
+                if(isCanMove("b",-1,0)&&isCanMove("b",-2,1)
+                &&isCanMove("b",0,1)&&isCanMove("b",0,0)
+                &&isCanMove("b",-1,1)){
+                    b.setX(b.getX() - size);
+                    a.setX(b.getX() - size);
+                    a.setY(b.getY() + size);
+                    c.setX(b.getX() + size);
+                    c.setY(b.getY() + size);
+                    d.setY(b.getY());
+                    d.setX(b.getX() + size);
+                    b.setY(b.getY() + size);
+                }else {
+                    modifyForm(-1);
+                }
+                break;
+            case 1:
+                if(isCanMove("b",0,-1)&&isCanMove("b",-1,-2)
+                &&isCanMove("b",-1,0)&&isCanMove("b",0,0)
+                &&isCanMove("b",-1,-1)){
+                    b.setY(b.getY() - size);
+                    a.setX(b.getX() - size);
+                    a.setY(b.getY() - size);
+                    c.setX(b.getX() - size);
+                    c.setY(b.getY() + size);
+                    d.setX(b.getX());
+                    d.setY(b.getY() + size);
+                    b.setX(b.getX() - size);
+                }else {
+                    modifyForm(-1);
+                }
+                break;
+            case 2:
+                if(isCanMove("b",1,0)&&isCanMove("b",2,-1)
+                &&isCanMove("b",0,-1)&&isCanMove("b",0,0)
+                &&isCanMove("b",1,-1)){
+                    b.setX(b.getX() + size);
+                    a.setX(b.getX() + size);
+                    a.setY(b.getY() - size);
+                    c.setX(b.getX() - size);
+                    c.setY(b.getY() - size);
+                    d.setY(b.getY());
+                    d.setX(b.getX() - size);
+                    b.setY(b.getY() - size);
+                }else {
+                    modifyForm(-1);
+                }
+                break;
+            case 3:
+                if(isCanMove("b",0,1)&&isCanMove("b",1,2)
+                &&isCanMove("b",1,1)&&isCanMove("b",0,0)
+                &&isCanMove("b",1,1)){
+                    b.setY(b.getY() + size);
+                    a.setX(b.getX() + size);
+                    a.setY(b.getY() + size);
+                    c.setX(b.getX() + size);
+                    c.setY(b.getY() - size);
+                    d.setX(b.getX());
+                    d.setY(b.getY() - size);
+                    b.setX(b.getX() + size);
+                }else {
+                    modifyForm(-1);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    private void turnS(){
+        if((form&1)==1){
+            if(isCanMove("b",0,-1)
+                    &&isCanMove("b",1,0)&&isCanMove("b",1,1)){
+                a.setY(b.getY() - size);
+                a.setX(b.getX());
+                c.setX(b.getX() + size);
+                c.setY(b.getY());
+                d.setX(b.getX() + size);
+                d.setY(b.getY() + size);
+            }else {
+                modifyForm(-1);
+            }
+        }else {
+            if(isCanMove("b",1,0)
+                    &&isCanMove("b",0,1)&&isCanMove("b",-1,1)){
+                a.setY(b.getY());
+                a.setX(b.getX() + size);
+                c.setX(b.getX());
+                c.setY(b.getY() + size);
+                d.setX(b.getX() - size);
+                d.setY(b.getY() + size);
+            }else {
+                modifyForm(-1);
+            }
+        }
+    }
+    private void turnT(){
+        switch (form){
+            case 0:
+                if(isCanMove("b",1,0)
+                        &&isCanMove("b",-1,0)&&isCanMove("b",0,-1)){
+                    a.setX(b.getX() + size);
+                    a.setY(b.getY());
+                    c.setY(b.getY());
+                    c.setX(b.getX() - size);
+                    d.setX(b.getX());
+                    d.setY(b.getY() - size);
+                }else {
+                    modifyForm(-1);
+                }
+                break;
+            case 1:
+                if(isCanMove("b",0,1)
+                        &&isCanMove("b",0,-1)&&isCanMove("b",1,0)){
+                    a.setX(b.getX());
+                    a.setY(b.getY() + size);
+                    c.setY(b.getY() - size);
+                    c.setX(b.getX());
+                    d.setX(b.getX() + size);
+                    d.setY(b.getY());
+                }else {
+                    modifyForm(-1);
+                }
+                break;
+            case 2:
+                if(isCanMove("b",-1,0)
+                        &&isCanMove("b",1,0)&&isCanMove("b",0,1)){
+                    a.setX(b.getX() - size);
+                    a.setY(b.getY());
+                    c.setY(b.getY());
+                    c.setX(b.getX() + size);
+                    d.setX(b.getX());
+                    d.setY(b.getY() + size);
+                }else {
+                    modifyForm(-1);
+                }
+                break;
+            case 3:
+                if(isCanMove("b",0,-1)
+                        &&isCanMove("b",0,1)&&isCanMove("b",-1,0)){
+                    a.setX(b.getX());
+                    a.setY(b.getY() - size);
+                    c.setY(b.getY() + size);
+                    c.setX(b.getX());
+                    d.setX(b.getX() - size);
+                    d.setY(b.getY());
+                }else {
+                    modifyForm(-1);
+                }
+            default:
+                break;
+        }
+    }
+    private void turnZ(){
+        if((form&1)==1){
+            if(isCanMove("b",0,-1)
+                    &&isCanMove("b",-1,0)&&isCanMove("b",-1,1)){
+                a.setY(b.getY() - size);
+                a.setX(b.getX());
+                c.setX(b.getX() - size);
+                c.setY(b.getY());
+                d.setX(b.getX() - size);
+                d.setY(b.getY() + size);
+            }else {
+                modifyForm(-1);
+            }
+        }else {
+            if(isCanMove("b",1,0)
+                    &&isCanMove("b",0,-1)&&isCanMove("b",-1,-1)){
+                a.setX(b.getX() + size);
+                a.setY(b.getY());
+                c.setX(b.getX());
+                c.setY(b.getY() - size);
+                d.setX(b.getX() - size);
+                d.setY(b.getY() - size);
+            }else {
+                modifyForm(-1);
+            }
+        }
     }
 
+    private void modifyForm(int i){
+        form=(form+i)%4;
+    }
+
+    void remove(){
+        pane.getChildren().removeAll(a,b,c,d);
+    }
+
+    boolean isOnTheTop()
+    {
+        return a.getY() <= 0 || b.getY() <= 0 || c.getY() <= 0 || d.getY() <= 0;
+    }
 }
