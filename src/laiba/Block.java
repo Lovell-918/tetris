@@ -15,9 +15,9 @@ public class Block {
      * 不同的布局产生不同的形状
      */
     private Pane pane;
-    private int xMax=Controller.X_MAX;
-    private int yMax=Controller.Y_MAX;
-    private int size=Controller.SIZE;
+    private final int xMax=Controller.X_MAX;
+    private final int yMax=Controller.Y_MAX;
+    private final int size=Controller.SIZE;
     Rectangle a=new Rectangle(size-1,size-1);
     Rectangle b=new Rectangle(size-1,size-1);
     Rectangle c=new Rectangle(size-1,size-1);
@@ -250,8 +250,8 @@ public class Block {
                 break;
 
         }
-        boolean xF=false;
-        boolean yF=false;
+        boolean xF;
+        boolean yF;
 
         xF= x>=0?rectangle.getX()+x*size<=xMax-size:rectangle.getX()+x*size>=0;
         yF= y>=0?rectangle.getY()+y*size<=yMax-size:rectangle.getY()+y*size>=0;
